@@ -55,6 +55,7 @@ class Test_windows(unittest.TestCase):
         print(metaObj)
         print(metaObj.guns)
 
+        # save_from_a_class
         # self.assertEqual(asset._id, DEFAULT_ASSET_IDENTIY,
         #                  'Asset _id is {}, must be {}'.format(asset._id, DEFAULT_ASSET_IDENTIY))
 
