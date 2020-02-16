@@ -12,28 +12,30 @@ from jsonmd.json_metadata import JsonMetadata
 
 class Car():
     def __init__(self, name):
-        self.metadata = JsonMetadata(name)
+        self.meta = JsonMetadata(name)
 
 
 ferrari = Car('ferrari')
-ferrari.metadata.path = your_path_for_save_the_json_file
-ferrari.metadata.insert('fuel', 200)
-ferrari.metadata.save()
+ferrari.meta.path = your_path_for_save_the_json_file
+ferrari.meta.insert('fuel', 200)
+ferrari.meta.save()
 
 ```
 
-### this will generate a json file on the path location spefified, that look like this
+#### this will generate a json file on the path location specified, that look like this
 
 MD_ferrari.json
 
+<dl>
+  <dt>
 {
-    "_about": "Saved by JsonMetada", 
-    "_version": "1.0.0", 
-    "fuel": 200, 
-    "system": {
-        "PC": "Your_User", 
-        "User": "Max", 
-        "app": "python.exe", 
+   "_about": "Saved by JsonMetada",
+   "_version": "1.0.0",
+   "fuel": 200,
+   "system": {
+        "PC": "Your_User",
+        "User": "Max",
+        "app": "python.exe",
         "name": "ferrari", 
         "time": {
             "day": "11", 
@@ -45,3 +47,44 @@ MD_ferrari.json
         }
     }
 }
+  </dt>
+</dl>
+
+#### Loading your data
+
+```python
+
+from jsonmd.json_metadata import JsonMetadata
+
+class Car():
+    def __init__(self, name):
+        self.meta = JsonMetadata(name)
+
+
+ferrari = Car('ferrari')
+ferrari.meta.path = your_path_for_save_the_json_file
+ferrari.meta.load()
+
+ferrari.meta.data['fuel']  # 200
+ferrari.meta.save()
+
+```
+
+#### Load the data as an object, the json is converted to a class with attributes
+
+```python
+
+from jsonmd.json_metadata import JsonMetadata
+
+class Car():
+    def __init__(self, name):
+        self.meta = JsonMetadata(name)
+
+
+ferrari = Car('ferrari')
+ferrari.meta.path = your_path_for_save_the_json_file
+ferrari.metadata = ferrari.meta.load_as_class()
+
+ferrari.metadata.fuel  # 200
+
+```
