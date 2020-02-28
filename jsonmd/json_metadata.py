@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
-
-'''
+''' Handles saving/loading key,values to a json file '''
 
 from sys import executable
 import os
 import time
+import inspect
 from datetime import datetime
 import platform
 from json_utils import load_json, save_json
@@ -13,8 +12,6 @@ from version import *
 
 
 class JsonMetadata():
-    ''' Json Metadata Class
-    '''
     def __init__(self, name):
         self._name = name
         self._data = {}
@@ -72,7 +69,7 @@ class JsonMetadata():
         return os.path.exists(self.filepath)
 
 # --------------------------------------------------------------------------------------------
-# METADATA GET
+# METADATA LOAD/INSERT/REMOVE/SAVE
 # --------------------------------------------------------------------------------------------
 
     def load_as_class(self):
@@ -103,6 +100,18 @@ class JsonMetadata():
 
         self.data = self._include_system_data(self.data)
         save_json(self.data, self.filepath)
+
+    def insert_class(self, _class):
+        ''' set class dict to data, data is cleared '''
+        self.data = self._attributes_from_class(_class)
+
+    def _attributes_from_class(self, _class):
+        attributes = {}
+        for name in dir(_class):
+            value = getattr(_class, name)
+            if not name.startswith('__') and not inspect.ismethod(value):
+                attributes[name] = value
+        return attributes
 
 # --------------------------------------------------------------------------------------------
 # SYSTEM METADATA OS/USER/TIME
