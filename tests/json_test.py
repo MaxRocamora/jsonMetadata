@@ -3,11 +3,19 @@ from __future__ import absolute_import, print_function
 
 import unittest
 import os
+import sys
+
+package_path = (os.path.dirname(os.getcwd()))
+if package_path not in sys.path:
+    sys.path.append(package_path)
 
 from jsonmd.json_metadata import JsonMetadata
 
+# test path & name
 test_path = os.path.join(os.path.dirname(__file__), 'test_files')
 test_name = 'test'
+test_class_name = 'proxy'
+att_list = ['foo', 'bar']
 
 
 class Test_windows(unittest.TestCase):
@@ -28,36 +36,43 @@ class Test_windows(unittest.TestCase):
         meta.system
 
         meta.path = test_path
-        # check if path is equal to abspath
-
-        # check if filepath is equal to abspath + filename + suffix + ext
-
         meta.insert(key='coins', value=12)
 
         # check if data have coins and value 12
-        print(meta.data['coins'])
+        self.assertEqual(meta.data['coins'], 12)
+
         meta.save()
 
         # check if file exists
+        self.assertEqual(os.path.exists(meta.filepath), True)
 
-        # meta.update({'coins': 7})
-        meta.insert(key='coins', value=7)
+        meta.insert('coins', 7)
 
         # check if data have coins and value 7
+        self.assertEqual(meta.data['coins'], 7)
 
         meta.remove('coins')
-        # check if coins is deleted
-        print(meta.data.get('coins', None))
+        self.assertEqual(meta.data.get('coins', None), None)
 
-        meta.insert(key='guns', value=['colt', 'magnum'])
+        meta.insert(key='items', value=att_list)
         meta.save()
-        metaObj = meta.load_as_class()
-        print(metaObj)
-        print(metaObj.guns)
 
-        # save_from_a_class
-        # self.assertEqual(asset._id, DEFAULT_ASSET_IDENTIY,
-        #                  'Asset _id is {}, must be {}'.format(asset._id, DEFAULT_ASSET_IDENTIY))
+        metaObj = meta.load_as_class()
+        self.assertEqual(type(metaObj), type)
+        self.assertEqual(hasattr(metaObj, 'items'), True)
+        self.assertEqual(metaObj.items, att_list)
+
+    def test_create_from_class(self):
+        ''' save_from_a_class '''
+        meta = JsonMetadata(test_class_name)
+        self.assertEqual(meta.name, test_class_name)
+        meta.path = test_path
+
+        proxyClass = type('Proxy', (), {'foos': 12, 'items': att_list})
+        meta.insert_class(proxyClass)
+        self.assertEqual(meta.data['foos'], 12)
+        self.assertEqual(meta.data['items'], att_list)
+        meta.save()
 
 
 if __name__ == '__main__':

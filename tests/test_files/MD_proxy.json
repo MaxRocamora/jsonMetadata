@@ -1,5 +1,5 @@
 {
-    "coin": 12, 
+    "foos": 12, 
     "items": [
         "foo", 
         "bar"
@@ -8,7 +8,7 @@
         "PC": "comp08", 
         "User": "maximilianorocamora", 
         "app": "python.exe", 
-        "name": "test", 
+        "name": "proxy", 
         "time": {
             "day": "28", 
             "month": "Feb", 
