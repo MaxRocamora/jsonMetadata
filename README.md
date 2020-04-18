@@ -88,3 +88,7 @@ ferrari.metadata = ferrari.meta.load_as_class()
 ferrari.metadata.fuel  # 200
 
 ```
+
+#### Install
+pip install json-metada
+https://pypi.org/project/json-metadata/1.1.0/
