@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
-class MissingJsonFile(Exception):
+class MissingJson(Exception):
     ''' Raise when system ask for a missing json file '''
 
-# class MissingJsonKeyword(Exception):
-#     ''' Raise when system ask for a missing keyword from a json '''
 
-
-class MissingOrInvalidJson(Exception):
-    ''' Raise when system ask for a missing or invalid json file '''
+class InvalidJson(Exception):
+    ''' Raise when system cannot read a json file '''
