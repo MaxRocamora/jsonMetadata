@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
-''' Handles saving/loading key,values to a json file '''
+'''
+Handles saving/loading key,values to/from a json file
+
+author: maxirocamora@gmail.com
+
+'''
 
 from sys import executable
+from sys import version as python_version
 import os
 import time
 import inspect
@@ -30,8 +36,12 @@ class JsonMetadata():
 
     @property
     def data(self):
-        ''' metadata info of the data dict '''
+        ''' main metadata info of the data dict '''
         return self._data
+
+    @data.setter
+    def data(self, val):
+        self._data = val
 
     @property
     def extension(self):
@@ -55,9 +65,10 @@ class JsonMetadata():
 
     @property
     def path(self):
-        ''' base path location of metadata json file '''
+        ''' base path location of metadata json file
+        if path is not set, returns default dir '''
         if not hasattr(self, '_path'):
-            return os.path.dirname(__file__)
+            return os.path.join(os.path.dirname(__file__), 'md_files')
         return self._path
 
     @path.setter
@@ -117,30 +128,18 @@ class JsonMetadata():
 # SYSTEM METADATA OS/USER/TIME
 # --------------------------------------------------------------------------------------------
 
-    @property
-    def system(self):
-        return self._include_system_data({})
-
     def _include_system_data(self, data):
         ''' add system metadata to the default data before save '''
         sys_data = {}
         sys_data['name'] = self.name
-        sys_data['app'] = self._get_executable
-        sys_data['PC'] = self._get_platform
-        sys_data['User'] = self._get_user
+        sys_data['app'] = os.path.basename(executable)
+        sys_data['PC'] = str(platform.node())
+        sys_data['python_version'] = python_version
+        sys_data['jsonmd_version'] = version
+        sys_data['User'] = str(os.getenv('username'))
         sys_data['time'] = self._get_time_metadata
         data['system'] = sys_data
         return data
-
-    @property
-    def _get_platform(self):
-        ''' Get pc name '''
-        return str(platform.node())
-
-    @property
-    def _get_user(self):
-        ''' Get pc user '''
-        return str(os.getenv('username'))
 
     @property
     def _get_time_metadata(self):
@@ -156,8 +155,3 @@ class JsonMetadata():
             'save_time': datetime.now().ctime()
         }
         return td
-
-    @property
-    def _get_executable(self):
-        ''' Get source exec '''
-        return os.path.basename(executable)
