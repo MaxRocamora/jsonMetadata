@@ -5,13 +5,15 @@ import unittest
 import os
 import sys
 
-package_path = (os.path.dirname(os.getcwd()))
+package_path = os.path.join((os.path.dirname(os.getcwd())), 'jsonmd')
+print(package_path)
 if package_path not in sys.path:
     sys.path.append(package_path)
 
-from jsonmd.json_metadata import JsonMetadata
+from json_metadata import JsonMetadata
 
 # test path & name
+base_path = os.path.dirname(os.path.dirname(__file__))
 test_path = os.path.join(os.path.dirname(__file__), 'test_files')
 test_name = 'test'
 test_class_name = 'proxy'
@@ -33,7 +35,6 @@ class Test_windows(unittest.TestCase):
         meta.filepath
         meta.filename
         meta.has_file
-        meta.system
 
         meta.path = test_path
         meta.insert(key='coins', value=12)
