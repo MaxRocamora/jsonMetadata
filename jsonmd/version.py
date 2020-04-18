@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 # --------------------------------------------------------------------------------------------
 '''
-1.0.0 - Alpha
+1.0.0 - Release 1
+1.1.0 - Cleaner errors and json_utils, some refactor
 
 '''
 
 VERSION_MAJOR = 1
-VERSION_MINOR = 0
+VERSION_MINOR = 1
 VERSION_PATCH = 0
 
 version = '{}.{}.{}'.format(VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH)
