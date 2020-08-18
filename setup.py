@@ -1,20 +1,23 @@
-import pathlib
-from setuptools import setup
+import setuptools
 
-# The directory containing this file
-HERE = pathlib.Path(__file__).parent
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
-# The text of the README file
-README = (HERE / "README.md").read_text()
-
-setup(name='json_metadata',
-      version='1.1.0',
-      description='Save/Load metadata json files',
-      long_description=README,
-      long_description_content_type="text/markdown",
-      url='https://github.com/MaxRocamora/jsonMetadata',
-      author='Maximiliano Rocamora',
-      author_email='maxirocamora@gmail.com',
-      license='GNU GENERAL PUBLIC LICENSE',
-      packages=['jsonmd'],
-      zip_safe=False)
+setuptools.setup(
+    name='jsonMetadata',
+    version='1.1.1',
+    author='Maximiliano Rocamora',
+    author_email='maxirocamora@gmail.com',
+    description='Save/Load metadata from classes to json files',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url='https://github.com/MaxRocamora/jsonMetadata',
+    license='GNU GENERAL PUBLIC LICENSE',
+    packages=setuptools.find_packages(),
+    classifiers=[
+        "Programming Language :: Python :: 2.7",
+        "License :: Freely Distributable",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=2.7',
+    zip_safe=False)
