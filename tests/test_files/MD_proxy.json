@@ -8,16 +8,16 @@
         "PC": "Max-PC",
         "User": "Max",
         "app": "python.exe",
-        "jsonmd_version": "1.1.0",
+        "jsonmd_version": "1.1.1",
         "name": "proxy",
         "python_version": "3.7.7 (tags/v3.7.7:d7c567b08f, Mar 10 2020, 10:41:24) [MSC v.1900 64 bit (AMD64)]",
         "time": {
-            "day": "17",
-            "month": "Apr",
-            "save_time": "Fri Apr 17 22:57:36 2020",
-            "time": "22:57",
+            "day": "18",
+            "month": "Aug",
+            "save_time": "Tue Aug 18 00:54:12 2020",
+            "time": "00:54",
             "year": "2020",
-            "year_day": "108"
+            "year_day": "231"
         }
     }
 }
