@@ -1,14 +1,13 @@
-jsonMetadata
-============
+<h1><center>jsonMetadata</center></h1>
 
 Load, save, and update data from your class to a json file, and viceversa.
 
-Example
 -------
 
+#### Example
 ```python
 
-from jsonmd.json_metadata import JsonMetadata
+import JsonMetadata
 
 class Car():
     def __init__(self, name):
@@ -22,10 +21,11 @@ ferrari.meta.save()
 
 ```
 
-#### this will generate a json file on the path location specified, that look like this
+##### Output:
 
-MD_ferrari.json
+A file named MD_ferrari.json into given path.
 
+Inside the json file:
 <dl>
   <dt>
 {
@@ -50,11 +50,11 @@ MD_ferrari.json
   </dt>
 </dl>
 
-#### Loading your data
+#### Loading your data into dict
 
 ```python
 
-from jsonmd.json_metadata import JsonMetadata
+import JsonMetadata
 
 class Car():
     def __init__(self, name):
@@ -69,6 +69,8 @@ ferrari.meta.data['fuel']  # 200
 ferrari.meta.save()
 
 ```
+
+--------------
 
 #### Load the data as an object, the json is converted to a class with attributes
 
@@ -90,5 +92,5 @@ ferrari.metadata.fuel  # 200
 ```
 
 #### Install
-pip install json-metada
+pip install json-metadata
 https://pypi.org/project/json-metadata/1.1.0/
