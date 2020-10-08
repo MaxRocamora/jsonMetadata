@@ -13,7 +13,7 @@ from __future__ import absolute_import, print_function
 
 import json
 import os
-from error import MissingJson, InvalidJson
+from jsonmd.error import MissingJson, InvalidJson
 
 
 def load_json(json_file):
